@@ -21,7 +21,7 @@ def analyze_invoice(uploaded_file):
         return {"error": "Falta la GOOGLE_API_KEY en los Secrets (.env)."}
 
     try:
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        model = genai.GenerativeModel('gemini-2.5-flash')
 
         # Verificación 2: ¿El archivo es válido?
         if uploaded_file is None:
