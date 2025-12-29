@@ -88,7 +88,7 @@ def render_upload_view():
                 st.session_state.invoice_data = {}
             if st.button("🚀 Analizar Factura", type="primary", use_container_width=True):
                 with st.spinner("Leyendo documento..."):
-                    datos = analizar_factura_con_gemini(file_path)
+                    datos = analyze_invoice(file_path)
                     
                     if "error" in datos:
                         st.error(datos['error'])
