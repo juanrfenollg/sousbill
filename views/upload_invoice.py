@@ -3,7 +3,7 @@ import os
 import base64
 from PIL import Image
 import pandas as pd
-from services.gemini import analizar_factura_con_gemini
+from services.gemini import analyze_invoice
 from database.connection import get_db_session 
 from database.models import Invoice, InvoiceItem
 from services.notifications import obtener_precio_anterior, enviar_alerta_correo
