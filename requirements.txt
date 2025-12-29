@@ -8,3 +8,5 @@ resend
 passlib
 bcrypt
 Pillow
+supabase
+gotrue
