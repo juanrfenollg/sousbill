@@ -1,0 +1,10 @@
+streamlit
+pandas
+sqlalchemy
+psycopg2-binary
+google-generativeai
+python-dotenv
+resend
+passlib
+bcrypt
+Pillow

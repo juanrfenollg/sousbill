@@ -1,0 +1,19 @@
+# --- ENTORNOS VIRTUALES Y PYTHON ---
+venv/
+__pycache__/
+*.py[cod]
+
+# --- SEGURIDAD (CRÍTICO) ---
+.env
+.streamlit/secrets.toml
+
+# --- ARCHIVOS TEMPORALES DE LA APP ---
+temp_uploads/
+
+# --- BASES DE DATOS LOCALES ---
+*.db
+*.sqlite3
+
+# --- SISTEMA OPERATIVO Y EDITOR ---
+.DS_Store
+.vscode/

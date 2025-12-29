@@ -1,0 +1,7 @@
+[theme]
+# La identidad de SousBill
+primaryColor = "#E85D04"        # Naranja Fuego (Para botones y acciones)
+backgroundColor = "#FFFFFF"     # Blanco limpio (Fondo principal)
+secondaryBackgroundColor = "#F0F2F6" # Gris muy suave (Barra lateral y campos)
+textColor = "#0F172A"           # Azul Oscuro casi negro (Texto legible)
+font = "sans serif"             # Tipografía moderna
