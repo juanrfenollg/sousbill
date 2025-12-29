@@ -107,7 +107,7 @@ def render_upload_view():
                             description=row.get("description", "Item"),
                             quantity=float(row.get("quantity", 1)),
                             unit_price=float(row.get("unit_price", 0)),
-                            total_line=float(row.get("total", 0))
+                            total_price=float(row.get("total", 0))
                         )
                         session.add(item)
                     
