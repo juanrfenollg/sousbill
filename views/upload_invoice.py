@@ -92,7 +92,7 @@ def render_upload_view():
                     # 1. Crear la Factura
                     new_invoice = Invoice(
                         vendor=vendor,  # <--- ¡AQUÍ ESTABA EL ERROR! (Antes ponía vendor_name)
-                        invoice_date=datetime.strptime(date_str, "%Y-%m-%d").date(),
+                        date=datetime.strptime(date_str, "%Y-%m-%d").date(),
                         total_amount=total,
                         currency=currency
                     )
