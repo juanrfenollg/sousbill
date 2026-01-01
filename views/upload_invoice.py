@@ -89,34 +89,40 @@ def render_upload_view():
                     # Conexión a Base de Datos
                     session = get_db_session()
                     
-                    # 1. Crear la Factura
+                    # 1. Obtener el ID del usuario actual (¡ESTO FALTABA!)
+                    # Asumimos que al hacer login guardaste el usuario en st.session_state.user
+                    current_user_id = st.session_state.user.id 
+                    
+                    # 2. Crear la Factura
                     new_invoice = Invoice(
-                        vendor=vendor,  # <--- ¡AQUÍ ESTABA EL ERROR! (Antes ponía vendor_name)
+                        user_id=current_user_id, # <--- ¡AQUÍ ESTÁ LA CLAVE!
+                        vendor=vendor,
                         date=datetime.strptime(date_str, "%Y-%m-%d").date(),
-                        total_amount=total,
+                        total_amount=total, # Asegúrate de usar el nombre correcto según tu models.py (total o total_amount)
                         currency=currency
                     )
                     session.add(new_invoice)
-                    session.flush() # Esto nos da el ID de la factura antes de cerrar
+                    session.flush() # Nos da el ID de la factura
                     
-                    # 2. Crear los Ítems
-                    # Leemos del editor (edited_items es un DataFrame)
+                    # 3. Crear los Ítems (igual que antes)
                     for index, row in edited_items.iterrows():
                         item = InvoiceItem(
                             invoice_id=new_invoice.id,
                             description=row.get("description", "Item"),
                             quantity=float(row.get("quantity", 1)),
                             unit_price=float(row.get("unit_price", 0)),
-                            total_price=float(row.get("total", 0))
+                            total_price=float(row.get("total", 0)) # Ojo: en tu modelo pusiste total_price
                         )
                         session.add(item)
                     
                     session.commit()
-                    st.success(f"✅ Factura de {vendor} guardada correctamente.")
+                    st.success(f"✅ Factura guardada para el usuario {st.session_state.user.email}")
                     
-                    # Limpiamos la memoria para la siguiente factura
+                    # Limpiamos memoria
                     del st.session_state['current_invoice']
                     session.close()
                     
+                except AttributeError:
+                    st.error("Error de sesión: Parece que no has iniciado sesión. Recarga la página.")
                 except Exception as e:
-                    st.error(f"Error guardando en base de datos: {e}")
+                    st.error(f"Error guardando: {e}")
